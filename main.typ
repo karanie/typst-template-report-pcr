@@ -59,7 +59,7 @@
           columns: (auto, auto, auto),
           pad(right: 0.25em)[Lampiran #context appendix-counter.display("A")],
           [#repeat([.], gap: 0.15em)],
-          pad(left: 0.25em)[#context appendix-counter.display("A")-#it.page()]
+          pad(left: 0.25em)[#context appendix-counter.display("A")-#context virtual_appendix_page.get()]
         )
       )
     )
@@ -88,7 +88,7 @@
       ],
       [
         #align(right + bottom)[
-          #image("media/logo_pcr.png", width: 3cm)
+          #image("media/logo_pcr.png", width: footer_logo_width)
         ]
       ]
     )
@@ -199,7 +199,7 @@
       ],
       [
         #align(right)[
-          #image("media/logo_pcr.png", width: 2.5cm)
+          #image("media/logo_pcr.png", width: footer_logo_width)
         ]
       ]
     )
@@ -209,23 +209,43 @@
   justify: true,
   first-line-indent: 0pt
 )
-#set text(size: 8pt)
-#counter(page).update(1)
-#set heading(numbering: "A")
+#set heading(numbering: "A.1.")
 #counter(heading).update(0)
 #show heading.where(
   level: 1
 ): it => [
   #pagebreak()
-  // this doesn't work when rendered as outline entry for some reasons, so please reset the counter everytime before you add new header
-  //#counter(page).update(0)
+  #context counter(page).update(1)
+  #virtual_appendix_page.update(x => 1)
   #set align(center)
-  #set text(12pt, weight: "bold")
+  #set text(heading_1_font_size, weight: "bold")
   #pad(bottom: 18pt)[
     #upper([
       Lampiran #counter(heading).display("A")
     ])
   ]
 ]
+
+#show: rest => {
+  for i in (2, 3, 4) {
+    rest = {
+      show heading.where(level: i): set heading(outlined: appendix_subheading_outline)
+      show heading.where(level: i): it => [
+        #virtual_appendix_page.update(x => context counter(page).get().at(0))
+        #set text(heading_n_font_size, weight: heading_n_font_weight)
+        #let level = counter(heading)
+        #pad(bottom: heading_n_bottom_padding)[
+          #grid(
+            columns: (par_first_line_indent, auto),
+            [ #level.display("A.1.") ],
+            [ #it.body ]
+          )
+        ]
+      ]
+      rest
+    }
+  }
+  rest
+}
 
 #include "sections/appendix/appendix.typ"

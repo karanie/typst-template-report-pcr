@@ -1,5 +1,6 @@
 #let author_name = "Muhammad Qarani"
 #let author_id = "NIM. 2155301097"
+#let author_gen = "21"
 
 #let report_type = "Proposal Proyek Akhir"
 //#let report_type = "Laporan Proyek Akhir"
@@ -19,6 +20,7 @@
 #let year = today.year()
 
 
+#let advisor_honorific = "Bapak"
 #let advisor_name = "Nama Pembimbing"
 #let advisor_id = "NIP. 123456"
 
@@ -30,9 +32,19 @@
   "NIP. 123456",
   "NIP. 123456",
 )
+#let reviewer_honorifics = (
+  "Bapak",
+  "Ibu",
+)
 
+
+#let head_of_study_honorific = "Ibu"
 #let head_of_study_name = "Nama Kaprodi"
 #let head_of_study_id = "NIP. 123456"
+
+#let coord_honorific= "Ibu"
+#let coord_name = "Nama Koor"
+#let coord_id = "NIP. 123456"
 
 #let campus_name = "Politeknik Caltex Riau"
 #let program_of_study = "Program Studi Teknik Informatika"

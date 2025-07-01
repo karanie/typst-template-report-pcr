@@ -194,7 +194,7 @@
       [],
       [
         #align(center)[
-          #counter(heading).display("A")-#counter(page).display("1")
+          #numbering("A", counter(heading).get().at(0))-#counter(page).display("1")
         ]
       ],
       [

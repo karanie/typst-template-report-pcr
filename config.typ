@@ -70,7 +70,7 @@
 #let par_first_line_indent = 3 * root_font_size
 #let par_first_line_indent_all = true
 
-#let appendix_subheading_outline = true
+#let appendix_subheading_outline = false
 #let virtual_appendix_page = state("virtual_appendix_page", 1)
 #let footer_logo_width = 3cm
 

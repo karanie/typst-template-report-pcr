@@ -161,6 +161,7 @@
 #include "sections/main/chap3.typ"
 #if report_type == "Laporan Proyek Akhir" {
   include "sections/main/chap4-testing-analysis.typ"
+  include "sections/main/chap5.typ"
 } else {
   include "sections/main/chap4-cost-time-mgnt.typ"
 }
